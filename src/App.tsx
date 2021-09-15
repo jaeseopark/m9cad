@@ -22,21 +22,25 @@ const getVideoElement = (path: string) => (
 const MainView = () => {
   const [fileView, setFileView] = useState<JSX.Element>();
 
-  const onPathChange = (path: string) => {
-    guessMimetypeAsync(path)
+  const onPathChange = (file) => {
+    const previewPath = URL.createObjectURL(file);
+    guessMimetypeAsync(file.name)
       .then((mimetype: string) => {
         if (mimetype.startsWith('image/')) {
-          setFileView(getImageElement(path));
+          setFileView(getImageElement(previewPath));
         } else if (mimetype.startsWith('video/')) {
-          setFileView(getVideoElement(path));
+          setFileView(getVideoElement(previewPath));
         }
       })
-      .catch((error) => alert(JSON.stringify(error)));
+      .catch((error) => {
+        console.log(error);
+        alert(JSON.stringify(error));
+      });
   };
 
   const onDrop = useCallback((acceptedFiles) => {
     const [file] = acceptedFiles;
-    onPathChange(file.path);
+    onPathChange(file);
   }, []);
 
   const { getRootProps } = useDropzone({
