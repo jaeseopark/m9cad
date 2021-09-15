@@ -1,0 +1,27 @@
+.canvas {
+  width: 1px;
+  height: calc(100vh - 30px);
+  flex: 1 1 auto;
+  overflow: hidden;
+
+  .overlay {
+    position: absolute;
+    width: calc(100vw - 250px);
+    height: calc(100vh - 100px);
+    top: 30px;
+
+    &.interactive {
+      background-color: rgba(#202020, 0.2);
+      z-index: 1;
+    }
+
+    &.render {
+      top: 0;
+    }
+  }
+
+  .display-component {
+    width: 100%;
+    z-index: -1;
+  }
+}

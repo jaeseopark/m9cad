@@ -1,0 +1,52 @@
+// @import '/assets/style/CanvasWindow.scss';
+// @import '/assets/style/ColorPalette.scss';
+// @import '/assets/style/LayerPanel.scss';
+// @import '/assets/style/PanelHeader.scss';
+// @import '/assets/style/Toolbar.scss';
+// @import '/assets/style/Toolbox.scss';
+
+* {
+  outline: none;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui;
+  background: rgb(83, 83, 83);
+  width: 100vw;
+  height: 100vh;
+
+  #root {
+    height: 100%;
+  }
+}
+
+.icon {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.editor {
+  height: 100%;
+
+  .body {
+    display: flex;
+    width: 100%;
+
+    .right-side {
+      width: 220px;
+    }
+
+    .left-side {
+      width: 30px;
+    }
+  }
+
+  .slick {
+    background-color: #454545;
+    border: 1px solid #5a5a5a;
+    border-radius: 2px;
+    font-size: x-small;
+    color: #f0f0f0;
+  }
+}

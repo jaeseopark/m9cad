@@ -1,0 +1,90 @@
+.layer-panel {
+  top: 230px;
+  color: rgb(227, 227, 227);
+  right: 0;
+
+  .layer-panel-title {
+    height: 30px;
+    padding-left: 8px;
+    padding-top: 6px;
+  }
+
+  .layers {
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 1px solid #454545;
+    height: calc(100vh - 422px);
+
+    .layer-summary {
+      border-bottom: 1px solid rgb(69, 69, 69);
+      cursor: pointer;
+
+      &.is-active {
+        background-color: rgb(107, 107, 107);
+      }
+
+      .layer-summary-body {
+        height: 32px;
+        padding-top: 8px;
+        padding-left: 8px;
+
+        .layer-color {
+          width: 16px;
+          height: 16px;
+          float: left;
+          margin: 4px 7px 0px 9px;
+        }
+
+        .layer-name {
+          margin-left: 8px;
+        }
+      }
+
+      .visibility {
+        width: 40px;
+        height: 40px;
+        border-right: 1px solid rgb(69, 69, 69);
+        float: left;
+
+        &.is-visible {
+          background-image: url('../../assets/eye-outline.svg');
+          background-size: 14px 14px;
+        }
+      }
+    }
+  }
+
+  .layer-toolbar {
+    height: 30px;
+    margin-top: 10px;
+    margin-right: 10px;
+
+    .layer-icon {
+      float: right;
+
+      &.add {
+        width: 14px;
+        height: 14px;
+        margin: 3px 2px 0 0;
+        background-size: 10px 10px;
+        background-image: url('../../assets/iconmonstr-plus-thin.svg');
+        border: 1px solid #dddddd;
+      }
+
+      &.clear {
+        width: 21px;
+        height: 21px;
+        background-size: 16px;
+        margin: 0 3px 0 2px;
+        background-image: url('../../assets/sweep.svg');
+      }
+
+      &.delete {
+        width: 21px;
+        height: 21px;
+        background-image: url('../../assets/trash.svg');
+        background-size: 21px;
+      }
+    }
+  }
+}

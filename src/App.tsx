@@ -1,26 +1,69 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable no-alert */
+import React, { useCallback, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
 
-function App() {
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Editor from './component/Editor';
+
+import { guessMimetypeAsync } from './util/mimeUtils';
+
+import './App.global.scss';
+
+const getImageElement = (path: string) => (
+  // eslint-disable-next-line jsx-a11y/alt-text
+  <img className="display-component" src={path} />
+);
+
+const getVideoElement = (path: string) => (
+  <video className="display-component" src={path} autoPlay controls muted />
+);
+
+const MainView = () => {
+  const [fileView, setFileView] = useState<JSX.Element>();
+
+  const onPathChange = (path: string) => {
+    guessMimetypeAsync(path)
+      .then((mimetype: string) => {
+        if (mimetype.startsWith('image/')) {
+          setFileView(getImageElement(path));
+        } else if (mimetype.startsWith('video/')) {
+          setFileView(getVideoElement(path));
+        }
+      })
+      .catch((error) => alert(JSON.stringify(error)));
+  };
+
+  const onDrop = useCallback((acceptedFiles) => {
+    const [file] = acceptedFiles;
+    onPathChange(file.path);
+  }, []);
+
+  const { getRootProps } = useDropzone({
+    onDrop,
+    multiple: false,
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      className="dropzone"
+      {...getRootProps({
+        onClick: (event) => {
+          event.stopPropagation();
+        },
+      })}
+    >
+      <Editor fileView={fileView!} />
     </div>
   );
-}
+};
 
-export default App;
+export default function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/" component={MainView} />
+      </Switch>
+    </Router>
+  );
+}
