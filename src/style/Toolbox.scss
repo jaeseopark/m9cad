@@ -16,12 +16,12 @@
     }
 
     &.polyline {
-      background-image: url('../../assets/dashed-line.svg');
+      background-image: url('../image/dashed-line.svg');
       background-size: 10px 10px;
     }
 
     &.zigzag {
-      background-image: url('../../assets/zigzag.svg');
+      background-image: url('../image/zigzag.svg');
       background-size: 14px 14px;
     }
   }

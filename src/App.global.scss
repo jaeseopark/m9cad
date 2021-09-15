@@ -1,9 +1,9 @@
-// @import '/assets/style/CanvasWindow.scss';
-// @import '/assets/style/ColorPalette.scss';
-// @import '/assets/style/LayerPanel.scss';
-// @import '/assets/style/PanelHeader.scss';
-// @import '/assets/style/Toolbar.scss';
-// @import '/assets/style/Toolbox.scss';
+@import './style/CanvasWindow.scss';
+@import './style/ColorPalette.scss';
+@import './style/LayerPanel.scss';
+@import './style/PanelHeader.scss';
+@import './style/Toolbar.scss';
+@import './style/Toolbox.scss';
 
 * {
   outline: none;
