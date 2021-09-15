@@ -1,6 +1,9 @@
+import { getTimestamp } from '../util/dateUtil';
 import { CanvasNode, LayerType, OverlayProps } from './overlayEntity';
 
 export default class Layer {
+  created = getTimestamp();
+
   nodes: CanvasNode[] = [];
 
   previewNode: CanvasNode | null = null;

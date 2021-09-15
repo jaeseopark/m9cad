@@ -55,6 +55,7 @@ const LayerPanel = ({
         {annotation.layers.map((layer, i) => (
           // eslint-disable-next-line react/jsx-key
           <LayerSummary
+            key={layer.created}
             layer={layer}
             index={i}
             isActive={annotation.activeLayer === i}

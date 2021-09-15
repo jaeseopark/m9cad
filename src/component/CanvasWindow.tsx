@@ -20,7 +20,7 @@ export const getSvgComp = (layer: Layer, isActiveLayer: boolean) => {
   const { layerType } = layer;
   const SvgComponent = SVG_COMPONENT_MAP[layerType];
   // @ts-ignore
-  return <SvgComponent layer={layer} isActiveLayer={isActiveLayer} />;
+  return <SvgComponent key={layer.created} layer={layer} isActiveLayer={isActiveLayer} />;
 };
 
 type CanvasWindowProps = {
