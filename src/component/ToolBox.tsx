@@ -1,32 +1,27 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable @typescript-eslint/ban-types */
-import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
 
 import { LayerType } from '../entity/overlayEntity';
+import { getSelectedTool, select } from '../redux/slice/tools';
 
-type ToolBoxProps = {
-  selected: LayerType;
-  onChange: Function;
-};
+const ToolBox = () => {
+  const dispatch = useDispatch();
+  const selected = useSelector(getSelectedTool);
 
-const ToolBox = ({ selected, onChange }: ToolBoxProps) => {
-  const Icon = ({ title, ...props }: { title: string }) => {
-    const cls = classNames('icon', 'tool-icon', title, {
-      selected: selected.toString() === title,
+  const Icon = ({ name, value, ...props }: { name: string, value: LayerType }) => {
+    const cls = classNames('icon', 'tool-icon', name, {
+      selected: selected.toString() === name,
     });
 
-    const onClick = () => onChange(title);
+    const onClick = () => dispatch(select(value));
 
-    return <div className={cls} title={title} onClick={onClick} {...props} />;
+    return <div className={cls} onClick={onClick} {...props} />;
   };
 
   return (
     <div className="toolbox">
-      {Object.values(LayerType).map((value) => (
-        <Icon key={value} title={value} />
+      {Object.entries(LayerType).map(([name, value]) => (
+        <Icon key={name} name={name} value={value} />
       ))}
     </div>
   );

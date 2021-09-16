@@ -1,34 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-type M9File = {
-    name: string;
-    path: string; // this is unique
-};
+import M9File from '../../entity/m9File';
 
 export const filesSlice = createSlice({
     name: 'files',
     initialState: {
-        files: [] as (M9File[]),
-        selectedFile: null as (M9File | null)
+        files: {} as ({ [fileId: string]: M9File }),
+        selectedFileId: ""
     },
     reducers: {
-        openFile: (state, action: { payload: M9File }) => {
+        createFile: (state, action: { payload: M9File }) => {
             const { payload: newFile } = action;
-            const { files } = state;
-            if (!files.find(f => f.path === newFile.path)) {
-                files.push(newFile);
+            const existingFile = Object.values(state.files).find(f => f.path === newFile.path);
+            if (!existingFile) {
+                state.selectedFileId = newFile.id;
+                state.files[newFile.id] = newFile;
+            } else {
+                state.selectedFileId = existingFile.id;
             }
-            state.selectedFile = newFile;
-        }
+        },
     },
 });
 
 export const {
-    openFile,
+    createFile,
 } = filesSlice.actions;
 
-export const getSelectedFile = (state) => state.selectedFile;
-
-export const getFileNames = (state) => state.files.map(f => f.name);
+export const getSelectedFile = (state) => state.files.files[state.files.selectedFileId]
 
 export default filesSlice.reducer;
