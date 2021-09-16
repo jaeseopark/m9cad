@@ -15,12 +15,9 @@ import LayerPanel from './LayerPanel';
 import ToolBox from './ToolBox';
 import CanvasWindow from './CanvasWindow';
 import ColorPalette from './ColorPalette';
+import FileDropzone from './FileDropzone';
 
-type EditorProps = {
-  fileView: JSX.Element;
-};
-
-const Editor = ({ fileView }: EditorProps) => {
+const AppFrame = () => {
   const [annotation] = useState<Annotation>(new Annotation());
   const svgRef = useRef(null);
   const [layerType, setLayerType] = useState<LayerType>(defaultLayerType);
@@ -68,11 +65,12 @@ const Editor = ({ fileView }: EditorProps) => {
         overlayProps={annotation.getActiveLayer().overlayProps}
       />
       <div className="body">
+        <FileDropzone />
         <div className="left-side">
           <ToolBox selected={layerType} onChange={setLayerType} />
         </div>
         <CanvasWindow
-          fileView={fileView}
+          fileView={null}
           annotation={annotation}
           svgRef={svgRef}
           addNode={addNode}
@@ -94,4 +92,4 @@ const Editor = ({ fileView }: EditorProps) => {
   );
 };
 
-export default Editor;
+export default AppFrame;
