@@ -4,8 +4,6 @@ import ColorPalette from "./ColorPalette";
 import LayerPanel from "./LayerPanel";
 
 const StyledRightPanel = styled.div`
-position: fixed;
-right: 0;
 width: 220px;
 height: 100%;
 `;

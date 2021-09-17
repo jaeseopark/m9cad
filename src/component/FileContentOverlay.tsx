@@ -9,7 +9,8 @@ const Overlay = () => {
     return <div />;
 };
 
-const StyledVideoControl = styled.div`
+const StyledVideoContent = styled.div`
+video { width: 100%; }
 `;
 
 const VideoContent = ({ path, id }: { path: string, id: string }) => {
@@ -17,13 +18,13 @@ const VideoContent = ({ path, id }: { path: string, id: string }) => {
         // TODO: adjust height
     };
 
-    return <>
+    return <StyledVideoContent>
         <div>
             <video src={path} onLoad={onLoad} muted />
             <Overlay />
         </div>
-        <StyledVideoControl />
-    </>;
+        <div className="controls" />
+    </StyledVideoContent>;
 };
 
 const FileContentOverlay = ({ file }: { file: M9File }) => {
