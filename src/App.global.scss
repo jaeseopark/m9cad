@@ -30,19 +30,6 @@ body {
 .editor {
   height: 100%;
 
-  .body {
-    display: flex;
-    width: 100%;
-
-    .right-side {
-      width: 220px;
-    }
-
-    .left-side {
-      width: 30px;
-    }
-  }
-
   .slick {
     background-color: #454545;
     border: 1px solid #5a5a5a;

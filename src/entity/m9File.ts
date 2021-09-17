@@ -1,6 +1,6 @@
 type M9File = {
-    id: string; // this is unique.
-    path: string; // this is unique.
+    id: string;
+    path: string;
     name: string;
     selectedLayerId: string;
 };

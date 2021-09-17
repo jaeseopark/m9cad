@@ -4,7 +4,7 @@ import ToolbarNumInput from './ToolbarNumInput';
 
 const Toolbar = () => {
   const onSave = () => {
-
+    alert("not implemented yet");
   };
 
   const onUndo = () => {
@@ -20,9 +20,7 @@ const Toolbar = () => {
       <ToolbarNumInput name="zigzagWavelength" />
       <ToolbarNumInput name="zigzagAmplitude" />
       <CloseLoopCheckbox />
-      <ToolbarButton className="slick save" onClick={onSave}>
-        Save
-      </ToolbarButton>
+      <ToolbarButton className="save" onClick={onSave}>Save</ToolbarButton>
     </div>
   );
 };

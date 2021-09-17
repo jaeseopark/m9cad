@@ -1,11 +1,20 @@
+import styled from 'styled-components';
+
 import ColorPalette from "./ColorPalette";
 import LayerPanel from "./LayerPanel";
 
+const StyledRightPanel = styled.div`
+position: fixed;
+right: 0;
+width: 220px;
+height: 100%;
+`;
+
 const RightPanel = () => {
-    return <div className="right-side">
+    return <StyledRightPanel className="right-side">
         <ColorPalette />
         <LayerPanel />
-    </div>;
+    </StyledRightPanel>;
 };
 
 export default RightPanel;

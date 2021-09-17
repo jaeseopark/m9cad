@@ -29,7 +29,7 @@ const CloseLoopCheckbox = () => {
 
     const onChange = (e) => {
         //@ts-ignore
-        dispatch(updateOverlayProps(file, { shouldCloseLoop: e.target.value }));
+        dispatch(updateOverlayProps(file, { shouldCloseLoop: e.target.checked }));
     };
 
     return <CloseLoopDiv>

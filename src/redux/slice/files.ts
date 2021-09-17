@@ -18,13 +18,27 @@ export const filesSlice = createSlice({
                 state.selectedFileId = existingFile.id;
             }
         },
+        selectFile: (state, action: { payload: string }) => {
+            const { payload: fileId } = action;
+            state.selectedFileId = fileId;
+        },
+        closeAll: (state) => {
+            state.files = {};
+        }
     },
 });
 
 export const {
     createFile,
+    selectFile,
+    closeAll,
 } = filesSlice.actions;
 
-export const getSelectedFile = (state) => state.files.files[state.files.selectedFileId]
+export const getSelectedFile = (state) => state.files.files[state.files.selectedFileId];
+
+export const getFiles = (state) => {
+    const files: M9File[] = Object.values(state.files.files);
+    return files;
+}
 
 export default filesSlice.reducer;

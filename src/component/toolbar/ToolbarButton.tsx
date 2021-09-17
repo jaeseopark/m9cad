@@ -1,24 +1,30 @@
 import styled from 'styled-components';
+import cls from 'classnames';
 
 const ToolbarButtonElement = styled.button`
-button[type='button'] {
-    padding: 3px 15px;
-    float: left;
+padding: 3px 15px;
+float: left;
 
-    &:hover {
-        background-color: rgb(168, 168, 168);
-    }
+&:hover {
+    background-color: rgb(168, 168, 168);
+}
 
-    &.clear {
-        margin-left: 45px;
-    }
+&.clear {
+    margin-left: 45px;
+}
 
-    &.save {
-        float: right;
-    }
+&.save {
+    float: right;
 }
 `;
 
-const ToolbarButton = (props) => <ToolbarButtonElement className="slick" type="button" {...props} />;
+const ToolbarButton = (props) => {
+    const { className, ...rest } = props;
+    return <ToolbarButtonElement
+        className={cls("slick", className)}
+        type="button"
+        {...rest}
+    />;
+}
 
 export default ToolbarButton;

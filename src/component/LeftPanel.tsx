@@ -1,9 +1,14 @@
+import styled from 'styled-components';
 import ToolBox from "./ToolBox";
 
+const StyledLeftPanel = styled.div`
+width: 30px;
+`;
+
 const LeftPanel = () => {
-    return <div className="left-side">
+    return <StyledLeftPanel className="left-side">
         <ToolBox />
-    </div>;
+    </StyledLeftPanel>;
 };
 
 export default LeftPanel;

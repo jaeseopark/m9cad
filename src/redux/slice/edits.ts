@@ -46,6 +46,10 @@ export const editsSlice = createSlice({
                 overlayProps: { ...state.globalOverlayProps },
                 isVisible: true
             };
+
+            if (!state.local[fileId]) {
+                state.local[fileId] = {};
+            }
             state.local[fileId][layerId] = layer;
         },
     },
