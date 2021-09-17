@@ -2,9 +2,7 @@ version: '3.7'
 services:
   m9cad:
     container_name: m9cad
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: m9cad:latest
     volumes:
       - '.:/app'
       - '/app/node_modules'

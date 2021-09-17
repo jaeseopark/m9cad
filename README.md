@@ -8,11 +8,12 @@ TBD
 
 ```bash
 yarn install
-docker-compose down -v  # only if you installed new dependencies
-docker-compose up --build
+docker build -t m9cad:latest .
+# ARM TODO: investigate buildx for cross-paltform builds
+# docker build -f Dockerfile-arm -t m9cad:latest . 
 
-# ARM (TODO: investigate buildx for cross-paltform builds)
-docker-compose up --build -f docker-compose-arm.yml
+docker-compose down -v  # only if you installed new dependencies
+docker-compose up
 ```
 
 ## Packaging
