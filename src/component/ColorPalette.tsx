@@ -1,21 +1,28 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
 import { SketchPicker } from 'react-color';
 import PanelHeader from './PanelHeader';
 
 import { OverlayProps } from '../entity/overlayEntity';
+import M9File from '../entity/m9File';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSelectedFile } from '../redux/slice/files';
+import { getOverlayPropsOrDefault } from '../redux/slice/edits';
+import { updateOverlayProps } from '../redux/middleware/edits';
 
-type ColorPaletteProps = { onChange: Function; overlayProps: OverlayProps };
 
 const ColorPalette = () => {
-  // const onColorChange = (event) => {
-  //   onChange({ color: event.hex });
-  // };
+  const dispatch = useDispatch();
+  const file: M9File = useSelector(getSelectedFile);
+  const overlayProps: OverlayProps = useSelector(getOverlayPropsOrDefault(file));
+
+  const onColorChange = (event) => {
+    //@ts-ignore
+    dispatch(updateOverlayProps(file, { color: event.hex }));
+  };
 
   return (
     <div className="color-palette">
       <PanelHeader text="Color" />
-      {/* <SketchPicker onChange={onColorChange} color={overlayProps.color} /> */}
+      <SketchPicker onChange={onColorChange} color={overlayProps.color} />
     </div>
   );
 };
