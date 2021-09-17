@@ -1,31 +1,8 @@
 import { useEffect, useState } from "react";
-import styled from 'styled-components';
 
 import M9File from "../entity/m9File";
 import { guessMimetypeAsync } from "../util/mimeUtils";
-
-
-const Overlay = () => {
-    return <div />;
-};
-
-const StyledVideoContent = styled.div`
-video { width: 100%; }
-`;
-
-const VideoContent = ({ path, id }: { path: string, id: string }) => {
-    const onLoad = (e) => {
-        // TODO: adjust height
-    };
-
-    return <StyledVideoContent>
-        <div>
-            <video src={path} onLoad={onLoad} muted />
-            <Overlay />
-        </div>
-        <div className="controls" />
-    </StyledVideoContent>;
-};
+import VideoContent from "./videocontent/VideoContent";
 
 const FileContentOverlay = ({ file }: { file: M9File }) => {
     const [fileContent, setFileContent] = useState<JSX.Element>();
