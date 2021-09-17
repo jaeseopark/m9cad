@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 import { SketchPicker } from 'react-color';
 import PanelHeader from './PanelHeader';
 
@@ -8,6 +10,13 @@ import { getSelectedFile } from '../redux/slice/files';
 import { getOverlayPropsOrDefault } from '../redux/slice/edits';
 import { updateOverlayProps } from '../redux/middleware/edits';
 
+const StyledColorPalette = styled.div`
+.sketch-picker {
+  border-radius: 0;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+`;
 
 const ColorPalette = () => {
   const dispatch = useDispatch();
@@ -20,10 +29,10 @@ const ColorPalette = () => {
   };
 
   return (
-    <div className="color-palette">
+    <StyledColorPalette>
       <PanelHeader text="Color" />
       <SketchPicker onChange={onColorChange} color={overlayProps.color} />
-    </div>
+    </StyledColorPalette>
   );
 };
 
