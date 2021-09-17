@@ -7,10 +7,9 @@ TBD
 ## Development
 
 ```bash
+yarn install
+docker-compose down -v  # only if you installed new dependencies
 docker-compose up --build
-
-# When there are changes to the dependencies, flush the Docker volume cache:
-# docker-compose down -v
 ```
 
 ## Packaging
