@@ -1,6 +1,13 @@
+import styled from 'styled-components';
+
 import CloseLoopCheckbox from './CloseLoopCheckbox';
 import ToolbarButton from './ToolbarButton';
 import ToolbarNumInput from './ToolbarNumInput';
+
+const StyledToolbar = styled.div`
+padding: 5px 4px 0 30px;
+height: 25px;
+`;
 
 const Toolbar = () => {
   const onSave = () => {
@@ -12,7 +19,7 @@ const Toolbar = () => {
   };
 
   return (
-    <div className="toolbar">
+    <StyledToolbar>
       <ToolbarButton onClick={onUndo}>Undo</ToolbarButton>
       <ToolbarNumInput name="strokeWidth" />
       <ToolbarNumInput name="strokeDashLength" />
@@ -21,7 +28,7 @@ const Toolbar = () => {
       <ToolbarNumInput name="zigzagAmplitude" />
       <CloseLoopCheckbox />
       <ToolbarButton className="save" onClick={onSave}>Save</ToolbarButton>
-    </div>
+    </StyledToolbar>
   );
 };
 
