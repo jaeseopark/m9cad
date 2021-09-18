@@ -16,15 +16,13 @@ const FileDropzone = ({ children }) => {
     const dispatch = useDispatch();
 
     const onDrop = useCallback((acceptedFiles) => {
-        const [file] = acceptedFiles;
-        const path = URL.createObjectURL(file);
-        dispatch(openFileMiddleware(file.name, path, file.size));
+        acceptedFiles.forEach(file => {
+            const path = URL.createObjectURL(file);
+            dispatch(openFileMiddleware(file.name, path, file.size));
+        })
     }, [dispatch]);
 
-    const { getRootProps } = useDropzone({
-        onDrop,
-        multiple: false,
-    });
+    const { getRootProps } = useDropzone({ onDrop });
 
     const props = getRootProps({
         onClick: (event) => {

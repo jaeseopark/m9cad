@@ -22,8 +22,20 @@ export const filesSlice = createSlice({
             const { payload: fileId } = action;
             state.selectedFileId = fileId;
         },
-        closeAll: (state) => {
-            state.files = {};
+        close: (state, action: { payload: string }) => {
+            const { payload: fileId } = action;
+            if (state.selectedFileId === fileId) {
+                delete state.files[fileId];
+                const remainingKeys = Object.keys(state.files);
+                if (remainingKeys.length === 0) {
+                    state.selectedFileId = "";
+                } else {
+                    const [firstId] = remainingKeys;
+                    state.selectedFileId = firstId;
+                }
+            } else {
+                delete state.files[fileId];
+            }
         }
     },
 });
@@ -31,7 +43,7 @@ export const filesSlice = createSlice({
 export const {
     createFile,
     selectFile,
-    closeAll,
+    close,
 } = filesSlice.actions;
 
 export const getSelectedFile = (state) => state.files.files[state.files.selectedFileId];

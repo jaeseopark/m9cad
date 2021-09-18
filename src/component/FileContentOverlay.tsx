@@ -7,16 +7,15 @@ import VideoContent from "./videocontent/VideoContent";
 const FileContentOverlay = ({ file }: { file: M9File }) => {
     const [fileContent, setFileContent] = useState<JSX.Element>();
 
-    const { id, path } = file;
-
     useEffect(() => {
+        const { id, path } = file;
         guessMimetypeAsync(file.name)
             .then(mimetype => {
                 if (mimetype.startsWith("video/")) {
                     setFileContent(<VideoContent path={path} id={id} />);
                 }
             })
-    }, []);
+    }, [file]);
 
     if (!fileContent) return <></>;
 

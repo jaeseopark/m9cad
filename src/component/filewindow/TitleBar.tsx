@@ -2,7 +2,6 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import M9File from "../../entity/m9File";
-import { closeAll } from '../../redux/slice/files';
 
 const StyledTitleBar = styled.div`
 background-color: gray;
@@ -11,7 +10,7 @@ background-color: gray;
 const TitleBar = ({ file }: { file: M9File }) => {
     const dispatch = useDispatch();
 
-    const CloseButton = () => <button onClick={() => dispatch(closeAll())}>x</button>;
+    const CloseButton = () => <button onClick={() => { }}>x</button>;
 
     return <StyledTitleBar>
         {file.name}
