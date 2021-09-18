@@ -17,7 +17,7 @@ const FileWindow = () => {
     const files: M9File[] = useSelector(getFiles);
     const selectedFile: M9File = useSelector(getSelectedFile);
 
-    if (files.length === 0 || !selectedFile) return <StyledFileWindow />;
+    if (files.length === 0) return <StyledFileWindow />;
 
     return (
         <StyledFileWindow active>
