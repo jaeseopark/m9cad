@@ -13,7 +13,7 @@ docker build -t m9cad:latest .
 # docker build -f Dockerfile-arm -t m9cad:latest . 
 
 docker-compose down -v  # only if you installed new dependencies
-docker-compose up
+docker-compose up -d
 ```
 
 ## Packaging
