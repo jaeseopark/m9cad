@@ -7,7 +7,7 @@ export const openFileMiddleware = (name: string, path: string, size: number) => 
     const fileId = name + size.toFixed(0);
     const layerId = getTimestamp().toFixed(0);
 
-    dispatch(createLayer({ fileId: path, layerId }));
+    dispatch(createLayer({ fileId, layerId }));
     dispatch(createFile({
         name,
         path,

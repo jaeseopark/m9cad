@@ -16,7 +16,7 @@ const FileContentOverlay = ({ file }: { file: M9File }) => {
                     setFileContent(<VideoContent path={path} id={id} />);
                 }
             })
-    });
+    }, []);
 
     if (!fileContent) return <></>;
 
