@@ -1,8 +1,6 @@
 @import './style/CanvasWindow.scss';
-@import './style/ColorPalette.scss';
 @import './style/LayerPanel.scss';
 @import './style/PanelHeader.scss';
-@import './style/Toolbar.scss';
 @import './style/Toolbox.scss';
 
 * {
@@ -27,27 +25,10 @@ body {
   background-position: center;
 }
 
-.editor {
-  height: 100%;
-
-  .body {
-    display: flex;
-    width: 100%;
-
-    .right-side {
-      width: 220px;
-    }
-
-    .left-side {
-      width: 30px;
-    }
-  }
-
-  .slick {
-    background-color: #454545;
-    border: 1px solid #5a5a5a;
-    border-radius: 2px;
-    font-size: x-small;
-    color: #f0f0f0;
-  }
+.slick {
+  background-color: #454545;
+  border: 1px solid #5a5a5a;
+  border-radius: 2px;
+  font-size: x-small;
+  color: #f0f0f0;
 }

@@ -15,10 +15,13 @@ The app was originally developed because my old computer was far too slow to run
 ## Development
 
 ```bash
-docker-compose up --build
+yarn install
+docker build -t m9cad:latest .
+# ARM TODO: investigate buildx for cross-paltform builds
+# docker build -f Dockerfile-arm -t m9cad:latest . 
 
-# When there are changes to the dependencies, flush the Docker volume cache:
-# docker-compose down -v
+docker-compose down -v  # only if you installed new dependencies
+docker-compose up -d
 ```
 
 ## Packaging

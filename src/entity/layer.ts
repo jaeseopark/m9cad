@@ -1,29 +1,12 @@
-import { getTimestamp } from '../util/dateUtil';
 import { CanvasNode, LayerType, OverlayProps } from './overlayEntity';
 
-export default class Layer {
-  created = getTimestamp();
-
-  nodes: CanvasNode[] = [];
-
-  previewNode: CanvasNode | null = null;
-
+type Layer = {
+  id: string;
+  nodes: CanvasNode[];
+  previewNode: CanvasNode | null | undefined;
   layerType: LayerType;
-
   overlayProps: OverlayProps;
+  isVisible: boolean;
+};
 
-  isVisible = true;
-
-  constructor(overlayProps: OverlayProps, layerType: LayerType) {
-    this.overlayProps = overlayProps;
-    this.layerType = layerType;
-  }
-
-  addNode = (node: CanvasNode) => this.nodes.push(node);
-
-  removeLastNode = () => this.nodes.pop();
-
-  clear = () => {
-    this.nodes.length = 0;
-  };
-}
+export default Layer;

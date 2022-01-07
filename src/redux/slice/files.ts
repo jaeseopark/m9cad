@@ -1,34 +1,56 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-type M9File = {
-    name: string;
-    path: string; // this is unique
-};
+import M9File from '../../entity/m9File';
 
 export const filesSlice = createSlice({
     name: 'files',
     initialState: {
-        files: [] as (M9File[]),
-        selectedFile: null as (M9File | null)
+        files: {} as ({ [fileId: string]: M9File }),
+        selectedFileId: ""
     },
     reducers: {
-        openFile: (state, action: { payload: M9File }) => {
+        createFile: (state, action: { payload: M9File }) => {
             const { payload: newFile } = action;
-            const { files } = state;
-            if (!files.find(f => f.path === newFile.path)) {
-                files.push(newFile);
+            const existingFile = Object.values(state.files).find(f => f.path === newFile.path);
+            if (!existingFile) {
+                state.selectedFileId = newFile.id;
+                state.files[newFile.id] = newFile;
+            } else {
+                state.selectedFileId = existingFile.id;
             }
-            state.selectedFile = newFile;
+        },
+        selectFile: (state, action: { payload: string }) => {
+            const { payload: fileId } = action;
+            state.selectedFileId = fileId;
+        },
+        close: (state, action: { payload: string }) => {
+            const { payload: fileId } = action;
+            if (state.selectedFileId === fileId) {
+                delete state.files[fileId];
+                const remainingKeys = Object.keys(state.files);
+                if (remainingKeys.length === 0) {
+                    state.selectedFileId = "";
+                } else {
+                    const [firstId] = remainingKeys;
+                    state.selectedFileId = firstId;
+                }
+            } else {
+                delete state.files[fileId];
+            }
         }
     },
 });
 
 export const {
-    openFile,
+    createFile,
+    selectFile,
+    close,
 } = filesSlice.actions;
 
-export const getSelectedFile = (state) => state.selectedFile;
+export const getSelectedFile = (state) => state.files.files[state.files.selectedFileId];
 
-export const getFileNames = (state) => state.files.map(f => f.name);
+export const getFiles = (state) => {
+    const files: M9File[] = Object.values(state.files.files);
+    return files;
+}
 
 export default filesSlice.reducer;

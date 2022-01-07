@@ -1,33 +1,17 @@
-import { openFile } from "../slice/files";
+import { getTimestamp } from "../../util/dateUtil";
+import { createLayer } from "../slice/edits";
+import { createFile } from "../slice/files";
 
-export const openFileMiddleware = (name: string, path: string) => dispatch => {
+export const openFileMiddleware = (name: string, path: string, size: number) => dispatch => {
+    // If two files have the same name/size, then they are the same file.
+    const fileId = name + size.toFixed(0);
+    const layerId = getTimestamp().toFixed(0);
 
-    // import { guessMimetypeAsync } from './util/mimeUtils';
-
-    // const getImageElement = (path: string) => (
-    //   // eslint-disable-next-line jsx-a11y/alt-text
-    //   <img className="display-component" src={path} />
-    // );
-
-    // const getVideoElement = (path: string) => (
-    //   <video className="display-component" src={path} autoPlay controls muted />
-    // );
-
-
-    // guessMimetypeAsync(file.name)
-    //   .then((mimetype: string) => {
-    //     if (mimetype.startsWith('image/')) {
-    //         return 
-    //       setFileView(getImageElement(previewPath));
-    //     } else if (mimetype.startsWith('video/')) {
-    //       setFileView(getVideoElement(previewPath));
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     alert(JSON.stringify(error));
-    //   });
-    dispatch(openFile({
-        name, path
+    dispatch(createLayer({ fileId, layerId }));
+    dispatch(createFile({
+        name,
+        path,
+        id: fileId,
+        selectedLayerId: layerId
     }));
 };
