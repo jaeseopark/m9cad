@@ -1,0 +1,64 @@
+.toolbar {
+  padding: 5px 4px 0 30px;
+  height: 25px;
+
+  .num-input {
+    label {
+      float: left;
+      background-color: transparent;
+      border: none;
+      margin-left: -115px;
+      margin-top: 3px;
+      color: #919191;
+    }
+
+    input[type='number'] {
+      margin-left: 5px;
+      float: left;
+      width: 110px;
+      height: 15px;
+      text-align: right;
+      padding-right: 10px;
+    }
+
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  .close-loop-container {
+    margin-top: 1px;
+    margin-left: 5px;
+    float: left;
+
+    input[type='checkbox'] {
+      float: left;
+    }
+
+    .close-loop {
+      color: #f0f0f0;
+      font-size: x-small;
+      float: left;
+      padding-top: 3px;
+    }
+  }
+
+  button[type='button'] {
+    padding: 3px 15px;
+    float: left;
+
+    &:hover {
+      background-color: rgb(168, 168, 168);
+    }
+
+    &.clear {
+      margin-left: 45px;
+    }
+
+    &.save {
+      float: right;
+    }
+  }
+}
